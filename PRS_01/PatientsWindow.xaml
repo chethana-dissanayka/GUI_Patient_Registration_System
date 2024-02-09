@@ -1,0 +1,134 @@
+﻿<Window x:Class="PRS_01.PatientsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PRS_01"
+        WindowStartupLocation="CenterScreen"
+        mc:Ignorable="d"
+        WindowStyle="None" ResizeMode="NoResize"
+        Title="PatientsWindow" Height="810" Width="1450">
+
+    <Grid Background="DeepSkyBlue" >
+        <StackPanel Height="60" HorizontalAlignment="Left" VerticalAlignment="Top" Background="Black" Width="1450">
+            <TextBlock HorizontalAlignment="Center"  VerticalAlignment="Top" FontSize="30" Margin="10"
+                          Text="Patients Registration" Foreground="White" FontWeight="Bold" Background="Black"/>
+        </StackPanel>
+
+        <ListView Name="ItemList1" Margin="5 80 5 0" Height="350" VerticalAlignment="Top" FontSize="20" 
+                  Width="1360"  SelectionChanged="ItemList1_SelectionChanged" >
+            <ListView.ContextMenu >
+                <ContextMenu HorizontalAlignment="Center">
+                    <MenuItem Header="Clear" Click="Menu1Item_Click"/>
+                </ContextMenu>
+            </ListView.ContextMenu >
+            <ListView.View >
+                <GridView  >
+                    
+                    <GridViewColumn Header="First Name"  Width="150" DisplayMemberBinding="{Binding First_Name}"/>
+                    <GridViewColumn Header="Last Name" Width="150" DisplayMemberBinding="{Binding Last_Name}"/>
+                    <GridViewColumn Header="NIC number" Width="150" DisplayMemberBinding="{Binding NIC_Number}"/>
+                    <GridViewColumn Header="Date of Birth" Width="150" DisplayMemberBinding="{Binding DOB}"/>
+                    <GridViewColumn Header="Age" Width="70" DisplayMemberBinding="{Binding Age}"/>
+                    <GridViewColumn Header="Gender" Width="80" DisplayMemberBinding="{Binding Gender}"/>
+                    <GridViewColumn Header="Address" Width="450" DisplayMemberBinding="{Binding Address}"/>
+                    <GridViewColumn Header="Doctor in charge" Width="150" DisplayMemberBinding="{Binding Doctor}"/>
+                              
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <CheckBox x:Name="EnableCheckBox" Content="Edit" HorizontalAlignment="Left" Width="100" 
+                  Height="30" FontSize="20"
+                  Margin="20 440 0 0" VerticalAlignment="Top" />
+
+        <Grid x:Name="EDitGrid" IsEnabled="{Binding ElementName=EnableCheckBox,Path=IsChecked}" Margin="6 470 0 0"
+              HorizontalAlignment="Stretch"  VerticalAlignment="Top" Height="200">
+            
+            <Label Content=" First Name           : " HorizontalAlignment="Left" Margin="5 0 0 0" VerticalAlignment="Top" 
+                   FontSize="20" Foreground="Black" Width="200" FontWeight="Bold"/>
+            
+            <Label Content=" Last Name            : " HorizontalAlignment="Left" Margin="500 0 0 0" VerticalAlignment="Top" 
+                   FontSize="20" Foreground="Black" Width="200"  FontWeight="Bold"/>
+            
+            <Label Content=" NIC Number           : " HorizontalAlignment="Left" Margin="1000 0 0 0" VerticalAlignment="Top" 
+                   FontSize="20" Foreground="Black"  Width="200" FontWeight="Bold" />
+
+            <Label Content=" Date of Birth        : " HorizontalAlignment="Left" Margin="5 60 0 0" VerticalAlignment="Top" 
+                   FontSize="20" Foreground="Black" Width="200"  FontWeight="Bold"/>
+
+            <Label Content=" Doctor in Charge  : " HorizontalAlignment="Left" Margin="500 60 0 0" VerticalAlignment="Top" 
+                   FontSize="20" Foreground="Black" Width="200"  FontWeight="Bold"/>
+
+            <Label Content=" Age                         : " HorizontalAlignment="Left" Margin="1000 60 0 0" VerticalAlignment="Top" 
+                   FontSize="20" Foreground="Black" Width="200"  FontWeight="Bold"/>
+
+            <Label Content=" Address                 : " HorizontalAlignment="Left" Margin="5 120 0 0" VerticalAlignment="Top" 
+                   FontSize="20" Foreground="Black"  Width="200"  FontWeight="Bold"/>
+
+            <Label Content=" Gender                   : " HorizontalAlignment="Left" Margin="1000 120 0 0" VerticalAlignment="Top" 
+                   FontSize="20" Foreground="Black" Width="200"  FontWeight="Bold"/>
+
+
+            <TextBox  Name="FirstNameTextBox" Text="{Binding ElementName=ItemList1,Path=SelectedItem.First_Name,Mode=OneWay}" 
+                      HorizontalAlignment="Left" Margin="225 0 0 0" Width="200" Height="30" VerticalAlignment="Top"
+                      FontSize="20" Foreground="Black" Background="White"/>
+            
+            <TextBox Name="LastNameTextBox" Text="{Binding ElementName=ItemList1,Path=SelectedItem.Last_Name,Mode=OneWay}" 
+                     HorizontalAlignment="Left" Margin="725 00 0 0" Width="200" Height="30" VerticalAlignment="Top" 
+                     FontSize="20" Foreground="Black" Background="White"/>
+            
+            <TextBox Name="NICTextBox" Text="{Binding ElementName=ItemList1,Path=SelectedItem.NIC_Number,Mode=OneWay}" 
+                     HorizontalAlignment="Left" Margin="1225 00 0 0" Width="200" Height="30" VerticalAlignment="Top" 
+                     FontSize="20" Foreground="Black" Background="White"/>
+            
+            <TextBox  Name="DOBTextBox" Text="{Binding ElementName=ItemList1,Path=SelectedItem.DOB,Mode=OneWay}" 
+                      HorizontalAlignment="Left" Margin="225 60 0 0" Width="200" Height="30" VerticalAlignment="Top"
+                      FontSize="20" Foreground="Black" Background="White"/>
+            
+            <TextBox Name="AddressTextBox" Text="{Binding ElementName=ItemList1,Path=SelectedItem.Address,Mode=OneWay}" 
+                     HorizontalAlignment="Left" Margin="225 120 0 0" Width="700" Height="30" VerticalAlignment="Top" 
+                     FontSize="20" Foreground="Black" Background="White"/>
+            
+            <TextBox  Name="DoctorTextBox" Text="{Binding ElementName=ItemList1,Path=SelectedItem.Doctor,Mode=OneWay}" 
+                      HorizontalAlignment="Left" Margin="725 60 0 0" Width="200" Height="30" VerticalAlignment="Top"
+                      FontSize="20" Foreground="Black" Background="White"/>
+            
+            <TextBox Name="AgeTextBox" Text="{Binding ElementName=ItemList1,Path=SelectedItem.Age, Mode=OneWay}" 
+                     HorizontalAlignment="Left" Margin="1225 60 0 0" Width="200" Height="30" VerticalAlignment="Top" 
+                     FontSize="20" Foreground="Black" Background="White"/>
+
+            <TextBox Name="GenderTextBox" Text="{Binding ElementName=ItemList1,Path=SelectedItem.Gender, Mode=OneWay}" 
+                     HorizontalAlignment="Left" Margin="1225 120 0 0" Width="200" Height="30" VerticalAlignment="Top" 
+                     FontSize="20" Foreground="Black" Background="White"/>
+
+        </Grid>
+
+        <Button x:Name="Create1Button" HorizontalAlignment="Left" Margin="175 645 0 0" VerticalAlignment="Top" 
+                  Style="{StaticResource mainbutton}" Background="DarkBlue"
+               Click="Create1Button_Click"  Width="150"  Content="Create"/>
+
+
+        <Button x:Name="Read1Button" HorizontalAlignment="Left" Margin="500 645 0 0" VerticalAlignment="Top"
+                  Style="{StaticResource mainbutton}" Background="DarkBlue"
+               Click="Read1Button_Click" Width="150"  Content="Read"/>
+
+
+        <Button x:Name="Update1Button" HorizontalAlignment="Left" Margin="800 645 0 0" VerticalAlignment="Top" 
+                Style="{StaticResource mainbutton}" Background="DarkBlue"
+                Click="Update1Button_Click" Width="150"  Content="Update"/>
+
+        <Button x:Name="Delete1Button" HorizontalAlignment="Left" Margin="1100 645 0 0" VerticalAlignment="Top" 
+                 Style="{StaticResource mainbutton}" 
+               Click="Delete1Button_Click" Width="150" Content="Delete" Background="DarkBlue"/>
+
+        <Button x:Name="Back1Button" HorizontalAlignment="Left" Margin="500 720 0 0" VerticalAlignment="Top"
+                 Style="{StaticResource mainbutton}" 
+                Width="150"  Content="Back" Background="Black" Click="Back1_Button"/>
+
+        <Button x:Name="Exit1Button" HorizontalAlignment="Left" Margin="800 720 0 0" VerticalAlignment="Top" 
+                 Style="{StaticResource mainbutton}" 
+                Width="150"  Content="Exit" Background="Black" Click="Exit1_Button"/>
+
+    </Grid>
+</Window>
